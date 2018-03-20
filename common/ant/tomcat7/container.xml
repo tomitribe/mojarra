@@ -173,6 +173,11 @@
     <target name="define.virtual-server.aware.port">
       <property name="scenario.aware.port" value="${container.port}" />
     </target>
+    
+    <target name="container.deploy.test.dependencies"
+            description="Deploy any container level dependencies to the container.">
+          
+    </target>
 
     <!-- 
         OPTIONAL
