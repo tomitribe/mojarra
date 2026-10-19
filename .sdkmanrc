@@ -1,0 +1,22 @@
+# Enable sdkman 'sdk env' feature to auto environment setup
+
+# Installation (only one time):
+# After checking out a new project, you may be missing some SDKs
+# specified in the project's .sdkmanrc file. To install these
+# missing SDKs, just type:
+# sdk env install
+
+# Usage:
+# To switch to the configuration present in your .sdkmanrc file,
+# simply issue the following command:
+# sdk env
+
+# Optional:
+# Do you want to switch SDK versions automatically when you cd into
+# a directory? This can be done by setting the sdkman_auto_env=true
+# in you SDKMAN configuration. Note that this will also reset any
+# project-specific SDKs to their default version when leaving the
+# directory.
+
+java=8.0.322-tem
+maven=3.8.8
