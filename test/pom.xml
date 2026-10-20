@@ -17,14 +17,12 @@
 
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sun.faces.test</groupId>
     <artifactId>pom</artifactId>
-    <version>2.3.19-TT.1-SNAPSHOT</version>
+    <version>2.3.19-TT.1</version>
     <packaging>pom</packaging>
 
     <name>Mojarra ${project.version} - Test</name>
@@ -193,7 +191,7 @@
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>util</artifactId>
-            <version>2.3.19-TT.1-SNAPSHOT</version>
+            <version>2.3.19-TT.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -290,10 +288,10 @@
                                     <target>
                                         <echo>=== Deploying ${project.build.finalName} to ${glassfish.deploy.home} ===</echo>
                                         <exec executable="${glassfish.deploy.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="deploy --force ${project.build.directory}/${project.build.finalName}.${project.packaging}"/>
+                                            <arg line="deploy --force ${project.build.directory}/${project.build.finalName}.${project.packaging}" />
                                         </exec>
                                         <exec executable="${glassfish.deploy.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="deploy --force ${project.build.directory}/${project.build.finalName}.${project.packaging}"/>
+                                            <arg line="deploy --force ${project.build.directory}/${project.build.finalName}.${project.packaging}" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -370,10 +368,10 @@
                                     <target>
                                         <echo>=== Starting ${glassfish.start.home} ===</echo>
                                         <exec executable="${glassfish.start.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-domain"/>
+                                            <arg line="start-domain" />
                                         </exec>
                                         <exec executable="${glassfish.start.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-domain"/>
+                                            <arg line="start-domain" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -405,10 +403,10 @@
                                     <target>
                                         <echo>=== Stopping ${glassfish.stop.home} ===</echo>
                                         <exec executable="${glassfish.stop.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="stop-domain"/>
+                                            <arg line="stop-domain" />
                                         </exec>
                                         <exec executable="${glassfish.stop.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="stop-domain"/>
+                                            <arg line="stop-domain" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -435,58 +433,31 @@
                                 <phase>validate</phase>
                                 <configuration>
                                     <target>
-                                        <unzip src="${glassfish.tck.zip.file}" dest=".." overwrite="true"/>
-                                        <mkdir dir="../jsftck/report.dir"/>
-                                        <mkdir dir="../jsftck/work.dir"/>
+                                        <unzip src="${glassfish.tck.zip.file}" dest=".." overwrite="true" />
+                                        <mkdir dir="../jsftck/report.dir" />
+                                        <mkdir dir="../jsftck/work.dir" />
                                         <!--
                                             Initial release of TCK does not have an exclude file,
                                             so this is why the 3 lines below are currently commented out.
                                             
-                                        <delete file="../ts.jtx" failonerror="false"/>
-                                        <get src="${glassfish.tck.exclude.url}" dest="../ts.jtx"/>
-                                        <copy force="true" file="../ts.jtx" tofile="../jsftck/bin/ts.jtx"/>
+                                        <delete file="../ts.jtx" failonerror="false" />
+                                        <get src="${glassfish.tck.exclude.url}" dest="../ts.jtx" />
+                                        <copy force="true" file="../ts.jtx" tofile="../jsftck/bin/ts.jtx" />
                                           -->
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="sigTestClasspath=(.*)"
-                                                       replace="sigTestClasspath=${sigTestClasspath}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="jsf.classes=(.*)"
-                                                       replace="jsf.classes=${jsfClasses}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="jspservlet.classes=(.*)"
-                                                       replace="jspservlet.classes=${jspServletClasses}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="webServerHome=(.*)"
-                                                       replace="webServerHome=${glassfishHome}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="webServerPort=(.*)"
-                                                       replace="webServerPort=${glassfishPort}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="webServerHost=(.*)"
-                                                       replace="webServerHost=${glassfishHost}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="impl.vi=(.*)"
-                                                       replace="impl.vi=glassfish"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="impl.vi.deploy.dir=(.*)"
-                                                       replace="impl.vi.deploy.dir=${glassfishDeployDir}"
-                                                       byline="true"/>
-                                        <replaceregexp file="../jsftck/bin/ts.jte" 
-                                                       match="impl.deploy.timeout.multiplier=(.*)"
-                                                       replace="impl.deploy.timeout.multiplier=20"
-                                                       byline="true"/>
-                                        <ant antfile="${glassfish.tck.build.file}" target="deploy.all"/>
-                                        <echo message="Waiting for deploy to settle down (5 minutes)"/>
-                                        <sleep seconds="300"/>
-                                        <ant antfile="${glassfish.tck.build.file}" target="run.all"/>
-                                        <ant antfile="${glassfish.tck.build.file}" target="undeploy.all"/>
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="sigTestClasspath=(.*)" replace="sigTestClasspath=${sigTestClasspath}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="jsf.classes=(.*)" replace="jsf.classes=${jsfClasses}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="jspservlet.classes=(.*)" replace="jspservlet.classes=${jspServletClasses}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="webServerHome=(.*)" replace="webServerHome=${glassfishHome}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="webServerPort=(.*)" replace="webServerPort=${glassfishPort}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="webServerHost=(.*)" replace="webServerHost=${glassfishHost}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="impl.vi=(.*)" replace="impl.vi=glassfish" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="impl.vi.deploy.dir=(.*)" replace="impl.vi.deploy.dir=${glassfishDeployDir}" byline="true" />
+                                        <replaceregexp file="../jsftck/bin/ts.jte" match="impl.deploy.timeout.multiplier=(.*)" replace="impl.deploy.timeout.multiplier=20" byline="true" />
+                                        <ant antfile="${glassfish.tck.build.file}" target="deploy.all" />
+                                        <echo message="Waiting for deploy to settle down (5 minutes)" />
+                                        <sleep seconds="300" />
+                                        <ant antfile="${glassfish.tck.build.file}" target="run.all" />
+                                        <ant antfile="${glassfish.tck.build.file}" target="undeploy.all" />
                                     </target>
                                 </configuration>
                                 <goals>
@@ -530,11 +501,11 @@
                                 <phase>validate</phase>
                                 <configuration>
                                     <target>
-                                        <delete quiet="true" failonerror="false" dir="${glassfish.unzip.unzipDir}"/>
-                                        <mkdir dir="${glassfish.unzip.unzipDir}"/>
-                                        <unzip src="${glassfish.unzip.zipFile}" dest="${glassfish.unzip.unzipDir}"/>
+                                        <delete quiet="true" failonerror="false" dir="${glassfish.unzip.unzipDir}" />
+                                        <mkdir dir="${glassfish.unzip.unzipDir}" />
+                                        <unzip src="${glassfish.unzip.zipFile}" dest="${glassfish.unzip.unzipDir}" />
                                         <exec executable="sh" osfamily="unix">
-                                            <arg line='-c "chmod a+x ${glassfish.unzip.home}/glassfish/bin/*"'/>
+                                            <arg line="-c &quot;chmod a+x ${glassfish.unzip.home}/glassfish/bin/*&quot;" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -965,18 +936,12 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                        <unzip src="${weblogic.patch.home}/${weblogic.patch.mojarraJarPath}/${weblogic.patch.mojarraJarName}"
-                                               dest="${weblogic.patch.home}/tmp.mojarra/wls.mojarra" />
+                                        <unzip src="${weblogic.patch.home}/${weblogic.patch.mojarraJarPath}/${weblogic.patch.mojarraJarName}" dest="${weblogic.patch.home}/tmp.mojarra/wls.mojarra" />
                                         <delete dir="${weblogic.patch.home}/tmp.mojarra/wls.mojarra/javax" />
                                         <delete dir="${weblogic.patch.home}/tmp.mojarra/wls.mojarra/com/sun" />
-                                        <unzip src="${weblogic.patch.home}/tmp.mojarra/jakarta.faces.jar"
-                                               dest="${weblogic.patch.home}/tmp.mojarra/wls.mojarra" />
-                                        <zip destfile="${weblogic.patch.home}/tmp.mojarra/${weblogic.patch.mojarraJarName}"
-                                             basedir="${weblogic.patch.home}/tmp.mojarra/wls.mojarra"
-                                             update="true" />
-                                        <copy overwrite="true"
-                                              file="${weblogic.patch.home}/tmp.mojarra/${weblogic.patch.mojarraJarName}"
-                                              tofile="${weblogic.patch.home}/${weblogic.patch.mojarraJarPath}/${weblogic.patch.mojarraJarName}" />
+                                        <unzip src="${weblogic.patch.home}/tmp.mojarra/jakarta.faces.jar" dest="${weblogic.patch.home}/tmp.mojarra/wls.mojarra" />
+                                        <zip destfile="${weblogic.patch.home}/tmp.mojarra/${weblogic.patch.mojarraJarName}" basedir="${weblogic.patch.home}/tmp.mojarra/wls.mojarra" update="true" />
+                                        <copy overwrite="true" file="${weblogic.patch.home}/tmp.mojarra/${weblogic.patch.mojarraJarName}" tofile="${weblogic.patch.home}/${weblogic.patch.mojarraJarPath}/${weblogic.patch.mojarraJarName}" />
                                     </target>
                                 </configuration>
                             </execution>
@@ -1050,10 +1015,10 @@
                                 <phase>validate</phase>
                                 <configuration>
                                     <target>
-                                        <delete quiet="true" failonerror="false" dir="${weblogic.unzip.unzipDir}"/>
-                                        <mkdir dir="${weblogic.unzip.unzipDir}"/>
-                                        <unzip src="${weblogic.unzip.zipFile}" dest="${weblogic.unzip.unzipDir}"/>
-                                        <delete failonerror="false" dir="${weblogic.unzip.unzipDir}/wls/user_projects/domains/mydomain"/>
+                                        <delete quiet="true" failonerror="false" dir="${weblogic.unzip.unzipDir}" />
+                                        <mkdir dir="${weblogic.unzip.unzipDir}" />
+                                        <unzip src="${weblogic.unzip.zipFile}" dest="${weblogic.unzip.unzipDir}" />
+                                        <delete failonerror="false" dir="${weblogic.unzip.unzipDir}/wls/user_projects/domains/mydomain" />
                                     </target>
                                 </configuration>
                                 <goals>

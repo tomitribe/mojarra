@@ -22,7 +22,7 @@
     <parent>
         <groupId>com.sun.faces.test</groupId>
         <artifactId>pom</artifactId>
-        <version>2.3.19-TT.1-SNAPSHOT</version>
+        <version>2.3.19-TT.1</version>
     </parent>
     <groupId>com.sun.faces.test.cluster</groupId>
     <artifactId>pom</artifactId>
@@ -129,27 +129,27 @@
                                     <target>
                                         <echo>=== Starting ${integration.container.cluster.domain} ===</echo>
                                         <exec executable="chmod" osfamily="unix">
-                                            <arg line="a+x ${integration.container.home}/glassfish/lib/nadmin"/>
+                                            <arg line="a+x ${integration.container.home}/glassfish/lib/nadmin" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="start-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="start-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <echo>=== Starting ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <echo>=== Deploying ${project.build.finalName} to ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -164,24 +164,24 @@
                                     <target>
                                         <echo>=== Undeploying ${project.build.finalName} from ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}"/>
+                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}"/>
+                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}" />
                                         </exec>
                                         <echo>=== Stopping ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="stop-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="stop-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="stop-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="stop-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <echo>=== Stopping ${integration.container.cluster.domain} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="stop-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="stop-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="stop-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="stop-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -240,17 +240,17 @@
                                     <target>
                                         <echo>=== Starting ${integration.container.cluster.domain} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="start-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="start-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <echo>=== Starting ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -310,51 +310,51 @@
                                     <target>
                                         <echo>=== Starting ${integration.container.cluster.domain} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="start-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="start-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <echo>=== Configuring ${integration.container.cluster.domain} ${integration.container.cluster.name} for cluster debugging ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="set ${integration.container.cluster.name}-config.java-config.debug-enabled=true"/>
+                                            <arg line="set ${integration.container.cluster.name}-config.java-config.debug-enabled=true" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="set ${integration.container.cluster.name}-config.java-config.debug-enabled=true"/>
+                                            <arg line="set ${integration.container.cluster.name}-config.java-config.debug-enabled=true" />
                                         </exec>
                                         <echo>=== Starting ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
 
                                         <echo>=== Configuring instances of ${integration.container.cluster.name} for debugging ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.1} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.1.debugPort}"/>
+                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.1} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.1.debugPort}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.1} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.1.debugPort}"/>
+                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.1} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.1.debugPort}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.2} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.2.debugPort}"/>
+                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.2} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.2.debugPort}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.2} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.2.debugPort}"/>
+                                            <arg line="create-system-properties --target ${integration.container.cluster.instance.2} JAVA_DEBUGGER_PORT=${integration.container.cluster.instance.2.debugPort}" />
                                         </exec>
                                         <echo>=== Stopping and re-starting ${integration.container.cluster.name} after configuring instances for debugging ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="stop-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="stop-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="stop-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="stop-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="start-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="start-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -391,10 +391,10 @@
                                     <target>
                                         <echo>=== Deploying ${project.build.finalName} to ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --availabilityenabled=true --target ${integration.container.cluster.name} ${project.build.directory}/${project.build.finalName}.war" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -427,10 +427,10 @@
                                     <target>
                                         <echo>=== Undeploying ${project.build.finalName} from ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}"/>
+                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}"/>
+                                            <arg line="undeploy --target ${integration.container.cluster.name} ${project.build.finalName}" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -463,17 +463,17 @@
                                     <target>
                                         <echo>=== Stopping ${integration.container.cluster.name} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="stop-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="stop-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="stop-cluster ${integration.container.cluster.name}"/>
+                                            <arg line="stop-cluster ${integration.container.cluster.name}" />
                                         </exec>
                                         <echo>=== Stopping ${integration.container.cluster.domain} ===</echo>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="stop-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="stop-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                         <exec executable="${integration.container.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="stop-domain ${integration.container.cluster.domain}"/>
+                                            <arg line="stop-domain ${integration.container.cluster.domain}" />
                                         </exec>
                                     </target>
                                 </configuration>

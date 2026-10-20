@@ -23,7 +23,7 @@
     <parent>
         <groupId>com.sun.faces.test</groupId>
         <artifactId>pom</artifactId>
-        <version>2.3.19-TT.1-SNAPSHOT</version>
+        <version>2.3.19-TT.1</version>
     </parent>
     
     <groupId>com.sun.faces.test.osgi</groupId>
@@ -59,10 +59,10 @@
 AS_ADMIN_PASSWORD=adminadmin                                           
                                         </echo>
                                         <exec executable="${glassfish.osgi.deploy.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="deploy --force --passwordfile ${glassfish.osgi.deploy.home}/password.txt --type osgi ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --passwordfile ${glassfish.osgi.deploy.home}/password.txt --type osgi ${project.build.directory}/${project.build.finalName}.war" />
                                         </exec>
                                         <exec executable="${glassfish.osgi.deploy.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="deploy --force --passwordfile ${glassfish.osgi.deploy.home}/password.txt --type osgi ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --passwordfile ${glassfish.osgi.deploy.home}/password.txt --type osgi ${project.build.directory}/${project.build.finalName}.war" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -93,10 +93,10 @@ AS_ADMIN_PASSWORD=adminadmin
                                     <target>
                                         <echo>=== Undeploying ${project.build.finalName} ===</echo>
                                         <exec executable="${glassfish.osgi.undeploy.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="undeploy ${project.build.finalName}"/>
+                                            <arg line="undeploy ${project.build.finalName}" />
                                         </exec>
                                         <exec executable="${glassfish.osgi.undeploy.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="undeploy ${project.build.finalName}"/>
+                                            <arg line="undeploy ${project.build.finalName}" />
                                         </exec>
                                     </target>
                                 </configuration>
