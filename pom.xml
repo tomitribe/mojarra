@@ -27,7 +27,7 @@
     
     <groupId>org.glassfish</groupId>
     <artifactId>mojarra-parent</artifactId>
-    <version>3.0.2</version>
+    <version>3.0.2-TT.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     <name>Mojarra ${project.version} - Project</name>
@@ -51,7 +51,14 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-   
+
+    <scm>
+        <connection>scm:git:git@github.com:tomitribe/mojarra.git</connection>
+        <developerConnection>scm:git:git@github.com:tomitribe/mojarra.git</developerConnection>
+        <url>https://github.com/tomitribe/mojarra</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <modules>
         <module>impl</module>
         <!--  Commented out until we have a running Jakarta-ized GF to test against
@@ -59,5 +66,38 @@
         -->
         <module>util</module>
     </modules>
-    
+
+    <distributionManagement>
+        <repository>
+            <id>tomitribe.releases.https</id>
+            <name>Tomitribe Release Distribution Repository</name>
+            <url>https://repository.tomitribe.com/service/local/staging/deploy/maven2</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>tomitribe.snapshots.https</id>
+            <name>Tomitribe Development Snapshot Repository</name>
+            <url>https://repository.tomitribe.com/content/repositories/snapshots-tomitribe</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--
+                  Tomitribe release: replaces the ee4j parent's "-Poss-release" (GPG + Sonatype OSSRH staging)
+                  and builds/deploys only the shipped jakarta.faces artifact.
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <configuration>
+                        <arguments>-pl impl -am ${release.arguments}</arguments>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
 </project>
