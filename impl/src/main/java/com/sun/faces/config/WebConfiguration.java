@@ -32,6 +32,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -358,6 +359,37 @@ public class WebConfiguration {
         mergedList.addAll(asList(faceletsSuffix));
 
         return mergedList.toArray(new String[0]);
+    }
+
+    /**
+     * Returns the suffixes which identify a resource as a Facelet, being the union of the configured
+     * {@link ViewHandler#FACELETS_SUFFIX_PARAM_NAME} values, the configured {@link ViewHandler#DEFAULT_SUFFIX_PARAM_NAME}
+     * values, always {@link ViewHandler#DEFAULT_FACELETS_SUFFIX}, and the extension entries of
+     * {@link ViewHandler#FACELETS_VIEW_MAPPINGS_PARAM_NAME}, in that precedence order.
+     * <p>
+     * This answers <em>whether a resource is a Facelet at all</em>, which is a wider question than whether it is
+     * reachable as a view. A template or an included fragment is a Facelet without ever being requested, so the
+     * default suffix stays in this set even when the webapp declares another view suffix, and an extension declared
+     * through the view mappings joins it.
+     * <p>
+     * The {@link ViewHandler#DEFAULT_SUFFIX_PARAM_NAME} values are kept, as {@link #getConfiguredExtensions()} does, so
+     * that the suffixes Mojarra 3.0 already treats as Facelet extensions stay valid include and template targets after
+     * the CVE-2026-46581 fix.
+     *
+     * @return the suffixes which identify a resource as a Facelet, deduplicated and in precedence order.
+     */
+    public String[] getFaceletResourceSuffixes() {
+        Set<String> faceletResourceSuffixes = new LinkedHashSet<>(asList(getOptionValue(FaceletsSuffix, " ")));
+        faceletResourceSuffixes.addAll(asList(getOptionValue(DefaultSuffix, " ")));
+        faceletResourceSuffixes.add(ViewHandler.DEFAULT_FACELETS_SUFFIX);
+
+        for (String viewMapping : getOptionValue(WebContextInitParameter.FaceletsViewMappings, ";")) {
+            if (viewMapping.length() > 1 && viewMapping.charAt(0) == '*') {
+                faceletResourceSuffixes.add(viewMapping.substring(1));
+            }
+        }
+
+        return faceletResourceSuffixes.toArray(new String[0]);
     }
 
     public void overrideContextInitParameter(WebContextInitParameter param, String value) {
