@@ -33,7 +33,7 @@
     
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.faces</artifactId>
-    <version>3.0.2-TT.1</version>
+    <version>3.0.2-TT.2-SNAPSHOT</version>
     
     <packaging>jar</packaging>
     
@@ -595,9 +595,4 @@
             </plugin>
         </plugins>
     </reporting>
-    
-
-  <scm>
-    <tag>3.0.2-TT.1</tag>
-  </scm>
 </project>
