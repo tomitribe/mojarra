@@ -39,6 +39,24 @@
     
     <name>Mojarra ${project.version}</name>
     <description>EE4J Compatible Implementation for Jakarta Faces API</description>
+
+    <!--
+      This module's parent is the ee4j project pom (not mojarra-parent), so it does not inherit the Tomitribe
+      distributionManagement from the root pom and would otherwise deploy to the ee4j Sonatype OSSRH repository.
+    -->
+    <distributionManagement>
+        <repository>
+            <id>tomitribe.releases.https</id>
+            <name>Tomitribe Release Distribution Repository</name>
+            <url>https://repository.tomitribe.com/service/local/staging/deploy/maven2</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>tomitribe.snapshots.https</id>
+            <name>Tomitribe Development Snapshot Repository</name>
+            <url>https://repository.tomitribe.com/content/repositories/snapshots-tomitribe</url>
+        </snapshotRepository>
+    </distributionManagement>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
