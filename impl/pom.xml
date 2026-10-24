@@ -67,9 +67,10 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/eclipse-ee4j/mojarra</url>
-        <connection>scm:git:git://github.com/eclipse-ee4j/mojarra.git</connection>
-        <developerConnection>scm:git:git@github.com:eclipse-ee4j/mojarra.git</developerConnection>
+        <url>https://github.com/tomitribe/mojarra</url>
+        <connection>scm:git:git@github.com:tomitribe/mojarra.git</connection>
+        <developerConnection>scm:git:git@github.com:tomitribe/mojarra.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
    <properties>
