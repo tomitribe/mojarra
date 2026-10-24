@@ -341,6 +341,31 @@ public class WebConfiguration {
         return new ArrayList<>(deduplicatedFaceletsSuffixes);
     }
 
+    /**
+     * Returns the suffixes which identify a resource as a Facelet, being the union of
+     * {@link #getConfiguredExtensions()}, always {@link ViewHandler#DEFAULT_FACELETS_SUFFIX}, and the extension entries
+     * of {@link ViewHandler#FACELETS_VIEW_MAPPINGS_PARAM_NAME}, in that precedence order.
+     * <p>
+     * This answers <em>whether a resource is a Facelet at all</em>, which is a wider question than whether it is
+     * reachable as a view. A template or an included fragment is a Facelet without ever being requested, so the
+     * default suffix stays in this set even when the webapp declares another view suffix, and an extension declared
+     * through the view mappings joins it.
+     *
+     * @return the suffixes which identify a resource as a Facelet, deduplicated and in precedence order.
+     */
+    public String[] getFaceletResourceSuffixes() {
+        Set<String> faceletResourceSuffixes = new LinkedHashSet<>(getConfiguredExtensions());
+        faceletResourceSuffixes.add(ViewHandler.DEFAULT_FACELETS_SUFFIX);
+
+        for (String viewMapping : getOptionValue(WebContextInitParameter.FaceletsViewMappings, ";")) {
+            if (viewMapping.length() > 1 && viewMapping.charAt(0) == '*') {
+                faceletResourceSuffixes.add(viewMapping.substring(1));
+            }
+        }
+
+        return faceletResourceSuffixes.toArray(new String[0]);
+    }
+
     public void overrideContextInitParameter(WebContextInitParameter param, String value) {
         if (param == null || value == null || value.length() == 0) {
             return;
